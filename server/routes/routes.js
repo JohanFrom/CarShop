@@ -5,7 +5,7 @@ import { postTest } from "../controllers/routerLogic.js";
 const router = express.Router();
 
 // Routes
-router.post("/newtest", postTest);
+router.post("/posttest", postTest);
 
 // End routes
 
