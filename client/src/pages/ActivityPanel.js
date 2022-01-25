@@ -10,7 +10,7 @@ function ActivityPanel() {
       setEmployees(fetchEmployees)
     };
     fetchData();
-  })
+  }, [])
 
   console.log(employees);
 

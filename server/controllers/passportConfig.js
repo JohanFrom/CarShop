@@ -11,7 +11,6 @@ const initializeStrategy = (passport) => {
             (name, password, done) => {
                 Employees.findOne({ name: name}, (err, user) => {
                     if(err){
-                        console.log("error");
                         console.log(err);
                     }
 
@@ -29,10 +28,10 @@ const initializeStrategy = (passport) => {
         done(null, user.id);
     });
 
-    passport.deserializeUser((id, done) => {
-        Employees.findOne({ _id: id }, (err, user) => {
+    passport.deserializeUser((obj, done) => {
+        Employees.findOne({ _id: obj.id }, (err, user) => {
           const employeeInformation = {
-            name: user.id,
+            name: user.name,
           };
           done(err, employeeInformation);
         });

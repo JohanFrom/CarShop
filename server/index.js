@@ -16,12 +16,12 @@ const app = express()
 app.use(express.json());
 
 app.use(routes);
+
 app.use(
     cors({
-        origin: "http://localhost:3000",
-        credentials: true,
+      origin: "*",
     })
-);
+  );
 
 app.use(morgan("dev"));
 app.use(
