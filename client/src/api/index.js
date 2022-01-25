@@ -17,4 +17,30 @@ export const deleteCarmodels = async (params) => {
 };
 
 export const getTotalSales = () => axios.get(`${serverUrl}/total_sales`);
+
+export const loginUser = (params) => {
+    axios({
+      method: "POST",
+      data: params,
+      withCredentials: true,
+      url: `${serverUrl}/loginuser`,
+    }).then((res) => {
+      if(res.data === "auth"){
+        window.location = "/activitypanel"
+      }
+      else{
+        console.log("Användare finns ej");
+      }
+    });
+  };
+    
+export const logoutUser = () => {
+    axios({
+      method: "DELETE",
+      withCredentials: true,
+      url: `${serverUrl}/logoutuser`,
+    }).then((res) => {
+      window.location.reload()
+    });
+  };
     
