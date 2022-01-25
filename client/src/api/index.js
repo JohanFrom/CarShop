@@ -17,3 +17,4 @@ export const deleteCarmodels = async (params) => {
 };
 
 export const getTotalSales = () => axios.get(`${serverUrl}/total_sales`);
+    

@@ -50,7 +50,7 @@ export const postCarmodel = async (req, res) => {
   })
 };
 
-export const deleteCarmodel = async (req, req) => {
+export const deleteCarmodel = async (req, res) => {
   const id = req.body.id;
   await Carmodel.deleteOne({ id: id }).then((carmodel) => {
     if(!carmodel){

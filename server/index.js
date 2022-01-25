@@ -5,6 +5,9 @@ import morgan from "morgan";
 import fs from 'fs';
 import cors from "cors";
 import routes from "./routes/routes.js";
+import passport from "passport";
+import session from "express-session";
+import localStrategy from "./controllers/passportConfig.js"
 
 dotenv.config();
 
@@ -25,6 +28,19 @@ app.use(
 
 app.use(morgan("dev"));
 
+app.use(
+    session({
+      secret: "something",
+      resave: false,
+      saveUninitialized: true,
+    })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+localStrategy(passport);
+
+
 const JsonToMongoDB = () => {
     let carShopData = fs.readFileSync('data.json');
     let data = JSON.parse(carShopData);
@@ -40,8 +56,6 @@ const JsonToMongoDB = () => {
 
    
 }
-
-
 
 const CONNECTION_URI = process.env.CONNECTION_DB_URI;
 const databaseConnection = async () => {
@@ -64,4 +78,4 @@ const databaseConnection = async () => {
 databaseConnection();
 
 
-
+export default app;
