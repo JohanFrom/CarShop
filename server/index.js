@@ -10,18 +10,18 @@ import session from "express-session";
 import localStrategy from "./controllers/passportConfig.js"
 
 dotenv.config();
-
-const PORT = process.env.PORT;
 const app = express()
+const PORT = process.env.PORT;
 app.use(express.json());
-
-app.use(routes);
 
 app.use(
     cors({
-      origin: "*",
+      origin: "http://localhost:3000",
+      credentials: true,
     })
   );
+
+app.use(routes);
 
 app.use(morgan("dev"));
 app.use(
@@ -37,6 +37,7 @@ app.use(passport.session());
 localStrategy(passport);
 
 
+/*
 const JsonToMongoDB = () => {
     let carShopData = fs.readFileSync('data.json');
     let data = JSON.parse(carShopData);
@@ -48,10 +49,7 @@ const JsonToMongoDB = () => {
     }catch(error){
         console.log(error.message);
     }
-    
-
-   
-}
+}*/
 
 const CONNECTION_URI = process.env.CONNECTION_DB_URI;
 const databaseConnection = async () => {

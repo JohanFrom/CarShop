@@ -4,7 +4,8 @@ import {
     getEmployees, 
     getTotalSales, 
     deleteCarmodel, 
-    postCarmodel 
+    postCarmodel,
+    postTest
 } from "../controllers/routerLogic.js";
 
 import {
@@ -17,12 +18,14 @@ const router = express.Router();
 // Routes
 router.get("/employees", getEmployees);
 router.get("/carmodels", getCarmodels);
-router.post("/carmodel", postCarmodel);
-router.delete("/carmodel", deleteCarmodel);
+router.post("/carmodels", postCarmodel);
+router.delete("/carmodels", deleteCarmodel);
 router.get("/total_sales", getTotalSales);
 
 router.post("/loginuser", loginUser);
 router.delete("/logoutuser", deleteSession);
+
+router.post("/newtest", postTest);
 // End routes
 
 export default router;

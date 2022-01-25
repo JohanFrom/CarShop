@@ -9,9 +9,9 @@ export const getCarmodels = () => axios.get(`${serverUrl}/carmodels`);
 export const postCarmodels = () => axios.post(`${serverUrl}/carmodels`);
 
 export const deleteCarmodels = async (params) => {
-    await axios.delete(`${serverUrl}/carmodel`, {
+    await axios.delete(`${serverUrl}/carmodels`, {
         data: {
-            id: params,
+            name: params,
         },
     }); 
 };
@@ -25,8 +25,9 @@ export const loginUser = (params) => {
       withCredentials: true,
       url: `${serverUrl}/loginuser`,
     }).then((res) => {
+      console.log(res);
       if(res.data === "auth"){
-        window.location = "/activitypanel"
+        window.location = "/employees"
       }
       else{
         console.log("Användare finns ej");
@@ -40,6 +41,6 @@ export const logoutUser = () => {
       withCredentials: true,
       url: `${serverUrl}/logoutuser`,
     }).then((res) => {
-      window.location.reload()
+      console.log(res);
     });
   };

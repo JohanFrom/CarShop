@@ -1,36 +1,45 @@
 import React from "react";
 import { useState } from "react";
-import { loginUser } from '../api';
 import { Button } from '@material-ui/core'
-import { Avatar } from '@mui/material';
 import { CssBaseline } from '@mui/material';
 import { TextField } from '@mui/material';
 import { Typography } from '@mui/material';
 import { Container } from '@mui/material';
 import { Box } from "@material-ui/core";
 import { createTheme, ThemeProvider } from '@mui/material';
+import Navbar from './Navbar'
+import { postCarmodels } from "../api";
 
 function UserLogin() {
-
-  const [loginName, setLoginName] = useState("");
+  
+  const theme = createTheme();
+  const [newbrand, setnewBrand] = useState("");
+  const [newmodel, setnewModel] = useState("");
+  const [newprice, setnewPrice] = useState("");
 
   const handleSubmit = () => {
-    console.log(`försöker logga in med ${loginName}`);
+   
+    const randomId = Math.floor(Math.random() * 100321)
+    console.log(randomId);
+    console.log(`${newbrand}`);
+    console.log(`${newmodel}`);
+    console.log(`${newprice}`);
 
     const postData = {
-      name: loginName,
-    };
+      id: randomId,
+      brand: newbrand,
+      model: newmodel,
+      price: newprice
+    }
 
-    loginUser(postData);
+    postCarmodels(postData)
+    //window.location = "/cars"
   }
-
-  const theme = createTheme();
-
-
 
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
+        <Navbar />
         <CssBaseline />
         <Box
           sx={{
@@ -38,24 +47,33 @@ function UserLogin() {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            border: "1px solid black",
-            borderRadius: 8,
-            paddingBottom: 20
           }}
         >
-          <Typography sx={{ fontSize: 35}}>Car Shop</Typography>
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-          </Avatar>
+          
           <Typography component="h1" variant="h5">
-            Sign in
+            Add a car!
           </Typography>
           <Box component="form">
             <TextField
               margin="normal"
               fullWidth
               type="text"
-              label="Name..."
-              onChange={(e) => setLoginName(e.target.value)}
+              label="Brand..."
+              onChange={(e) => setnewBrand(e.target.value)}
+            />
+            <TextField
+              margin="normal"
+              fullWidth
+              type="text"
+              label="Model..."
+              onChange={(e) => setnewModel(e.target.value)}
+            />
+            <TextField
+              margin="normal"
+              fullWidth
+              type="text"
+              label="Price..."
+              onChange={(e) => setnewPrice(e.target.value)}
             />
             <Button
               fullWidth
@@ -63,7 +81,7 @@ function UserLogin() {
               sx={{ mt: 3, mb: 2 }}
               onClick={handleSubmit}
               >
-              Sign In
+              Add
             </Button>
           </Box>
         </Box>
