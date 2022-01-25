@@ -2,6 +2,7 @@
 import Employees from '../models/employees.js';
 import Carmodel from '../models/carmodels.js';
 import Carmodels from '../models/carmodels.js';
+import Sales from '../models/sales.js';
 
 
 export const getEmployees = async (req, res) => {
@@ -24,26 +25,25 @@ export const getCarmodels = async (req, res) => {
 
 
 export const postCarmodel = async (req, res) => {
-  let newId = req.body.id
-  console.log(req);
-  let newBrand = req.params.brand
-  let newModel = req.params.model
-  let newPrice = req.params.price
-  console.log(newId);
+  const createRandomId = () => 
+    Math.floor(Math.random() * 100)
+  
+  const randomID = createRandomId();
 
   try {
+    const newBrand = req.body.brand
+    const newModel = req.body.model
+    const newPrice = req.body.price
     const newCar = new Carmodels({
-      id: id,
-      brand: brand,
-      model: model,
-      price: price
+      id: randomID,
+      brand: newBrand,
+      model: newModel,
+      price: newPrice
     });
-    console.log(newCar);
-    await newTest.save();
-    console.log("Bil skapad");
+    await newCar.save();
+    res.send("newcar")
   } catch (error) {
     res.status(404).json({ message: error.message})
-    console.log("NGT GICK FEL");
   }
   //brand: req.params.brand
   //model: req.params.model
@@ -67,12 +67,32 @@ export const deleteCarmodel = async (req, res) => {
 // FIXA SEDAN
 export const getTotalSales = async (req, res) => {
   try {
-    const employees = await Employees.find();
-    res.status(200).json(employees);
+    const sales = await Sales.find();
+    res.status(200).json(sales);
 
   } catch (error) {
     res.status(404).json({ message: error.message})
   }
+}
+
+export const newUser = async (req, res) => {
+  const createRandomId = () => 
+    Math.floor(Math.random() * 100)
+  
+  const randomID = createRandomId();
+  try{
+    const name = req.body.name
+    const userNew = new Employees({
+      id: randomID,
+      name: name
+    })
+    await userNew.save();
+    res.send("added");
+  }catch(error){
+    res.status(404).json({ message: error.message})
+    console.log("NGT GICK FEL");
+  }
+  
 }
 
 export const postTest = async (req, res) => {

@@ -8,7 +8,9 @@ import { TextField } from '@mui/material';
 import { Typography } from '@mui/material';
 import { Container } from '@mui/material';
 import { Box } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import { createTheme, ThemeProvider } from '@mui/material';
+import { Link } from "@material-ui/core";
 
 function UserLogin() {
 
@@ -65,6 +67,11 @@ function UserLogin() {
               >
               Sign In
             </Button>
+            <Grid item>
+                <Link href="/adduser" variant="body2">
+                  {"Don't have an account? Sign Up"}
+                </Link>
+              </Grid>
           </Box>
         </Box>
       </Container>

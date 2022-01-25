@@ -18,15 +18,11 @@ function UserLogin() {
   const [newprice, setnewPrice] = useState("");
 
   const handleSubmit = () => {
-   
-    const randomId = Math.floor(Math.random() * 100321)
-    console.log(randomId);
     console.log(`${newbrand}`);
     console.log(`${newmodel}`);
     console.log(`${newprice}`);
 
     const postData = {
-      id: randomId,
       brand: newbrand,
       model: newmodel,
       price: newprice

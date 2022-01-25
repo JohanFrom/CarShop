@@ -46,7 +46,7 @@ const Navbar = () => {
             <IconButton color="inherit" href="/employees">
                 Employees
             </IconButton>
-            <IconButton color="inherit" href="/employees">
+            <IconButton color="inherit" href="/sales">
                 Sales
             </IconButton>
             <IconButton color="inherit" href="/cars">

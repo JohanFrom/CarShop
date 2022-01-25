@@ -1,20 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { getEmployees, logoutUser } from '../api';
+import { getEmployees } from '../api';
 import Navbar from './Navbar'
-import { Box, createTheme, ThemeProvider, Typography } from '@material-ui/core';
-import { flexbox } from '@mui/system';
+import { Box,Typography } from '@material-ui/core';
 
-const headerTheme = createTheme({
-  typography: {
-    fontSize: 30
-  }
-})
 
-const pTheme = createTheme({
-  typography: {
-    fontSize: 50
-  }
-})
 
 
 function ShowEmpoyees() {

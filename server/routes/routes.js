@@ -5,7 +5,8 @@ import {
     getTotalSales, 
     deleteCarmodel, 
     postCarmodel,
-    postTest
+    postTest,
+    newUser
 } from "../controllers/routerLogic.js";
 
 import {
@@ -24,7 +25,7 @@ router.get("/total_sales", getTotalSales);
 
 router.post("/loginuser", loginUser);
 router.delete("/logoutuser", deleteSession);
-
+router.post("/adduser", newUser )
 router.post("/newtest", postTest);
 // End routes
 

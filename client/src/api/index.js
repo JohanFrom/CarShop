@@ -6,7 +6,20 @@ export const getEmployees = () => axios.get(`${serverUrl}/employees`);
 
 export const getCarmodels = () => axios.get(`${serverUrl}/carmodels`);
 
-export const postCarmodels = () => axios.post(`${serverUrl}/carmodels`);
+export const postCarmodels = (params) => {
+  axios({
+    method: "POST",
+    data: params,
+    withCredentials: true,
+    url: `${serverUrl}/carmodels`,
+  }).then((res) => {
+    if(res.data === "newcar"){
+      window.location = "/cars"
+    }else{
+      console.log("ngt gick fel");
+    }
+  })
+}
 
 export const deleteCarmodels = async (params) => {
     await axios.delete(`${serverUrl}/carmodels`, {
@@ -41,6 +54,21 @@ export const logoutUser = () => {
       withCredentials: true,
       url: `${serverUrl}/logoutuser`,
     }).then((res) => {
-      console.log(res);
+      
     });
   };
+
+export const postNewUser = (params) => {
+  axios({
+      method: "POST",
+      data: params,
+      withCredentials: true,
+      url: `${serverUrl}/adduser`,
+  }).then((res) => {
+      if(res.data === "added"){
+        window.location = "/";
+      }else{
+        console.log("ngt gick fel");
+      }
+  })
+}
