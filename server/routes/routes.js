@@ -1,12 +1,20 @@
 import express from "express";
-import { postTest } from "../controllers/routerLogic.js";
-
+import { 
+    getCarmodels, 
+    getEmployees, 
+    getTotalSales, 
+    deleteCarmodel, 
+    postCarmodel 
+} from "../controllers/routerLogic.js";
 
 const router = express.Router();
 
 // Routes
-router.post("/posttest", postTest);
-
+router.get("/employees", getEmployees);
+router.get("/carmodels", getCarmodels);
+router.post("/carmodel", postCarmodel);
+router.delete("/carmodel", deleteCarmodel);
+router.get("/total_sales", getTotalSales);
 // End routes
 
 export default router;

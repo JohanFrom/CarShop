@@ -2,6 +2,7 @@ import express from "express"
 import dotenv from "dotenv"
 import mongoose from "mongoose";
 import morgan from "morgan";
+import fs from 'fs';
 import cors from "cors";
 import routes from "./routes/routes.js";
 
@@ -24,6 +25,24 @@ app.use(
 
 app.use(morgan("dev"));
 
+const JsonToMongoDB = () => {
+    let carShopData = fs.readFileSync('data.json');
+    let data = JSON.parse(carShopData);
+    try{
+        db = CONNECTION_URI;
+        const CarShop = mongoose.Collection("CarShop")
+        CarShop.insertMany(data);
+        console.log(cities);
+    }catch(error){
+        console.log(error.message);
+    }
+    
+
+   
+}
+
+
+
 const CONNECTION_URI = process.env.CONNECTION_DB_URI;
 const databaseConnection = async () => {
     try{
@@ -35,6 +54,7 @@ const databaseConnection = async () => {
             console.log(
                 `Server is running, connected to database on port: ${PORT}`
             );
+            //JsonToMongoDB();
         });
     } catch (error){
         console.log(error.message);
