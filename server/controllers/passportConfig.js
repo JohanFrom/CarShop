@@ -7,11 +7,12 @@ const LocalStrategy = passportLocal.Strategy;
 const initializeStrategy = (passport) => {
     passport.use(
         new LocalStrategy(
-            {usernameField: "id", passwordField: "id"},
-            (id, password, done) => {
-                Employees.findOne({ id: id }, (err, user) => {
+            {usernameField: "name", passwordField: "name"},
+            (name, password, done) => {
+                Employees.findOne({ name: name}, (err, user) => {
                     if(err){
-                        return done(err);
+                        console.log("error");
+                        console.log(err);
                     }
 
                     if(!user){

@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const serverUrl = "http://localhost:8000/";
+const serverUrl = "http://localhost:8000";
 
 export const getEmployees = () => axios.get(`${serverUrl}/employees`);
 
@@ -43,4 +43,3 @@ export const logoutUser = () => {
       window.location.reload()
     });
   };
-    

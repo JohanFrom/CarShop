@@ -1,18 +1,16 @@
-import React from "react";
-import { BrowserRouter as Router, Route} from "react-router-dom";
-import UserLogin from "./pages/UserLogin.js";
-import ActivityPanel from "./pages/ActivityPanel";
-
-//Import the the different components
+import React from 'react'
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import './App.css';
+import UserLogin from './pages/UserLogin';
+import ActivityPanel from './pages/ActivityPanel';
 
 function App() {
   return (
     <Router>
-    
-        
-        <Route exact path="/" component={UserLogin}/>
-        <Route exact path="acitivitypanel" component={ActivityPanel}/>
-      
+        <Routes>
+          <Route path="/" element={<UserLogin />}/>
+          <Route path="/activitypanel" element={<ActivityPanel />}/>
+        </Routes>
     </Router>
   );
 }
