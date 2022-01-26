@@ -6,7 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import green from "@material-ui/core/colors/green";
 import { CssBaseline } from '@mui/material';
-import { logoutUser, getOneEmployee, getSession } from '../api';
+import { logoutUser, getOneEmployee, getSession } from '../api';;
 
 const useStyles = makeStyles((theme) => ({
   menuButton: {
@@ -27,7 +27,21 @@ const useStyles = makeStyles((theme) => ({
 
 const Navbar = () => {
   const classes = useStyles();
+  const [employee, setEmployee] = useState("")
+  const [status, setStatus] = useState("")
+
   
+  useEffect(() => {
+    const fetchData = async () => {
+      const fecthedSession = await getSession();
+      const fetchedOneEmployee = await getOneEmployee(fecthedSession.data.name)
+      setEmployee(fecthedSession.data)
+      setStatus(fetchedOneEmployee.data)
+    };
+    fetchData();
+  }, [])
+  
+
   const UserLogout = () => {
     const answer = window.confirm("Log out?")
     if(answer){
@@ -59,6 +73,11 @@ const Navbar = () => {
             <IconButton color="inherit" href="/add">
                 Add
             </IconButton>
+            <Typography>
+              {status.status === false ? null : <IconButton color="inherit" href="/profile">
+                Profile
+            </IconButton>}
+            </Typography>
             <IconButton color="inherit" onClick={UserLogout}>
                 Logout
             </IconButton>

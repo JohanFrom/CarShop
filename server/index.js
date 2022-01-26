@@ -20,11 +20,9 @@ app.use(
     })
   );
 
-app.use(routes);
-
 app.use(
     session({
-      secret: "something",
+      secret: "cats",
       resave: false,
       saveUninitialized: true,
     })
@@ -34,6 +32,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static("public"));
 localStrategy(passport);
+app.use(routes);
 app.use(morgan("dev"));
 
 

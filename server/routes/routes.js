@@ -18,11 +18,11 @@ const router = express.Router();
 // Routes
 router.get("/employees", getEmployees);
 router.get("/getsession", getSession);
-router.get("/getoneemployee", getOneEmployee)
+router.get("/getoneemployee/:name", getOneEmployee)
+router.get("/total_sales", getTotalSales);
 router.get("/carmodels", getCarmodels);
 router.post("/carmodels", postCarmodel);
 router.delete("/carmodels", deleteCarmodel);
-router.get("/total_sales", getTotalSales);
 
 router.post("/loginuser", loginUser);
 router.delete("/logoutuser", deleteSession);

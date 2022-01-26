@@ -4,12 +4,38 @@ const serverUrl = "http://localhost:8000";
 
 export const getEmployees = () => axios.get(`${serverUrl}/employees`);
 
+export const loginUser = (params) => {
+  axios({
+    method: "POST",
+    data: params,
+    withCredentials: true,
+    url: `${serverUrl}/loginuser`,
+  }).then((res) => {
+    if(res.data === "auth"){
+      window.location = "/employees"
+    }
+    else{
+      console.log("Användare finns ej");
+    }
+  });
+};
+  
+export const logoutUser = () => {
+  axios({
+    method: "DELETE",
+    withCredentials: true,
+    url: `${serverUrl}/logoutuser`,
+  }).then((res) => {
+    window.location = "/"
+  });
+};
+
 export const getOneEmployee = (name) =>
   axios.get(`${serverUrl}/getoneemployee/${name}`);
 
-  export const getSession = () => {
-    return axios.get(`${serverUrl}/getsession`, { withCredentials: true });
-  }
+export const getSession = () => 
+  axios.get(`${serverUrl}/getsession`, { withCredentials: true });
+
 
 export const getCarmodels = () => axios.get(`${serverUrl}/carmodels`);
 
@@ -37,32 +63,6 @@ export const deleteCarmodels = async (params) => {
 };
 
 export const getTotalSales = () => axios.get(`${serverUrl}/total_sales`);
-
-export const loginUser = (params) => {
-    axios({
-      method: "POST",
-      data: params,
-      withCredentials: true,
-      url: `${serverUrl}/loginuser`,
-    }).then((res) => {
-      if(res.data === "auth"){
-        window.location = "/employees"
-      }
-      else{
-        console.log("Användare finns ej");
-      }
-    });
-  };
-    
-export const logoutUser = () => {
-    axios({
-      method: "DELETE",
-      withCredentials: true,
-      url: `${serverUrl}/logoutuser`,
-    }).then((res) => {
-      window.location.reload()
-    });
-  };
 
 export const postNewUser = (params) => {
   axios({

@@ -56,6 +56,7 @@ function UserLogin() {
               type="text"
               label="Brand..."
               onChange={(e) => setnewBrand(e.target.value)}
+              required
             />
             <TextField
               margin="normal"
@@ -63,6 +64,7 @@ function UserLogin() {
               type="text"
               label="Model..."
               onChange={(e) => setnewModel(e.target.value)}
+              required
             />
             <TextField
               margin="normal"
@@ -70,12 +72,14 @@ function UserLogin() {
               type="text"
               label="Price..."
               onChange={(e) => setnewPrice(e.target.value)}
+              required
             />
             <Button
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
               onClick={handleSubmit}
+              required
               >
               Add
             </Button>

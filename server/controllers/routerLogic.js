@@ -5,12 +5,14 @@ import passport from 'passport';
 
 
 export const loginUser = (req, res, next) => {
-  passport.authenticate("local", (err, user, info) => {
+  passport.authenticate("userLogin", (err, user, info) => {
     if (err) {return err, null};
     if (!user) res.send("Ingen användare finns!");
     else {
       req.logIn(user, (err) => {
-        if (err) {return err, null};
+        if (err) {
+          return err, null
+        };
         res.send("auth");
       });
     }
@@ -40,11 +42,9 @@ export const deleteSession = (req, res) => {
 
 export const getOneEmployee = async (req, res) => {
   try {
-    const employee = await Employees.findOne({ name: req.body.name });
+    const employee = await Employees.findOne({ name: req.params.name });
     res.status(200).json(employee);
   } catch {
-    console.log("HEJ");
-    console.log("NGT GICK FEL");
     res.status(404).json({ message: error.message });
   }
 };
@@ -109,6 +109,12 @@ export const getTotalSales = async (req, res) => {
         localField: "employee_id",
         foreignField: "id",
         as: "employee"
+      },
+      $lookup: {
+        from: "carmodels",
+        localField: "carmodel_id",
+        foreignField: "id",
+        as: "sales"
       }
     }
   ])
@@ -139,12 +145,11 @@ export const getTotalSales = async (req, res) => {
 
     
 
-  //res.status(200).json(getEmployeesAndPrice)
-  
+  res.status(200).json(salesAndEmployees)
+  /*
   res.status(200).json({
-    salesAndEmployees,
-    salesAndCarModels
-  });
+    salesAndEmployees
+  });*/
 
   } catch (error) {
     res.status(404).json({ message: error.message})

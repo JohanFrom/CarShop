@@ -6,6 +6,7 @@ const LocalStrategy = passportLocal.Strategy;
 
 const initializeStrategy = (passport) => {
     passport.use(
+      "userLogin",
       new LocalStrategy({usernameField: 'name', passwordField: 'name'},
         (name, password, done) => {
         Employees.findOne({ name: name }, (err, user) => {
@@ -18,20 +19,18 @@ const initializeStrategy = (passport) => {
   
     //Skapar en session där cookiens ID är namnet på användaren
     passport.serializeUser((user, done) => {
-      if(user instanceof Employees) {
-        done(null, { id:user.id })
-      }
+      done(null, user.id);
     });
   
     //Hittar sessionens ID och avslutar sessionen
     passport.deserializeUser((id, done) => {
-      Employees.findOne({ _id: id }, (err, user) => {
-        const employeeInformation = {
+      Employees.findOne({ id: id }, (err, user) => {
+        const employeeInfo = {
           name: user.name,
         };
-        done(err, employeeInformation);
+        done(err, employeeInfo);
       });
     });
-  };
+};
 
 export default initializeStrategy;

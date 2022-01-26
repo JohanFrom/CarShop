@@ -1,19 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import { getEmployees, getSession, getOneEmployee} from '../api';
+import { getEmployees } from '../api';
 import Navbar from './Navbar'
 import { Box,Typography } from '@material-ui/core';
 
 
-function ShowEmpoyees() {
+function ShowEmployees() {
   const [employees, setEmployees] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       const fetchEmployees = await getEmployees();
-      const test = await getSession();
-      const ello = await getOneEmployee(123);
-      console.log(ello);
-      console.log(test);
       setEmployees(fetchEmployees.data)
     };
     fetchData();
@@ -38,4 +34,4 @@ function ShowEmpoyees() {
   );
 }
 
-export default ShowEmpoyees;
+export default ShowEmployees;

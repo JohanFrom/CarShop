@@ -14,8 +14,8 @@ function ShowEmpoyees() {
     fetchData();
   }, [])
 
-
   console.log(sales);
+  
 
   return (
       <div className="App">
