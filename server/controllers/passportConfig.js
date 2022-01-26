@@ -18,17 +18,18 @@ const initializeStrategy = (passport) => {
   
     //Skapar en session där cookiens ID är namnet på användaren
     passport.serializeUser((user, done) => {
-      done(null, user.id);
+      if(user instanceof Employees) {
+        done(null, { id:user.id })
+      }
     });
   
     //Hittar sessionens ID och avslutar sessionen
     passport.deserializeUser((id, done) => {
       Employees.findOne({ _id: id }, (err, user) => {
-
-        const patientInformation = {
+        const employeeInformation = {
           name: user.name,
         };
-        done(err, patientInformation);
+        done(err, employeeInformation);
       });
     });
   };

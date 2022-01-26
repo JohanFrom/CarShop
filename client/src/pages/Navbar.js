@@ -27,26 +27,14 @@ const useStyles = makeStyles((theme) => ({
 
 const Navbar = () => {
   const classes = useStyles();
-  const [employees, setEmployees] = useState("")
-  const [status, setStatus] = useState("")
+  
   const UserLogout = () => {
-    logoutUser();
-    window.location = "/";
+    const answer = window.confirm("Log out?")
+    if(answer){
+      logoutUser();
+      window.location = "/";
+    }
   }
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const fetchSession = await getSession();
-      const fetchUser = await getOneEmployee(
-        fetchSession.data.name
-      )
-      setEmployees(fetchSession.data);
-      setStatus(fetchUser.data);
-
-      console.log(status);
-    };
-    fetchData();
-  }, []);
 
   return (
     <React.Fragment>

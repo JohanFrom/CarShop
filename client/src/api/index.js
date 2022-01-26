@@ -45,7 +45,6 @@ export const loginUser = (params) => {
       withCredentials: true,
       url: `${serverUrl}/loginuser`,
     }).then((res) => {
-      console.log(res);
       if(res.data === "auth"){
         window.location = "/employees"
       }
@@ -61,7 +60,7 @@ export const logoutUser = () => {
       withCredentials: true,
       url: `${serverUrl}/logoutuser`,
     }).then((res) => {
-      
+      window.location.reload()
     });
   };
 

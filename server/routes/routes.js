@@ -8,20 +8,17 @@ import {
     postTest,
     newUser,
     getOneEmployee,
-    getSession
-} from "../controllers/routerLogic.js";
-
-import {
+    getSession,
     loginUser,
     deleteSession
-} from "../controllers/login.js"
+} from "../controllers/routerLogic.js";
 
 const router = express.Router();
 
 // Routes
 router.get("/employees", getEmployees);
+router.get("/getsession", getSession);
 router.get("/getoneemployee", getOneEmployee)
-router.get("getsession", getSession)
 router.get("/carmodels", getCarmodels);
 router.post("/carmodels", postCarmodel);
 router.delete("/carmodels", deleteCarmodel);

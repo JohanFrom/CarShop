@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { getEmployees} from '../api';
+import { getEmployees, getSession, getOneEmployee} from '../api';
 import Navbar from './Navbar'
 import { Box,Typography } from '@material-ui/core';
-
-
 
 
 function ShowEmpoyees() {
@@ -12,6 +10,10 @@ function ShowEmpoyees() {
   useEffect(() => {
     const fetchData = async () => {
       const fetchEmployees = await getEmployees();
+      const test = await getSession();
+      const ello = await getOneEmployee(123);
+      console.log(ello);
+      console.log(test);
       setEmployees(fetchEmployees.data)
     };
     fetchData();
@@ -25,8 +27,10 @@ function ShowEmpoyees() {
         <Box sx={{display: 'flex', flexDirection: 'column' }}>
         {employees.map((employee) => (
           <>
+            <Box  sx={{margin: 20}}>
             <Typography>Id: {employee.id}</Typography>
             <Typography>Name: {employee.name}</Typography>
+            </Box>
           </>
         ))}
         </Box>

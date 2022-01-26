@@ -2,7 +2,6 @@ import express from "express"
 import dotenv from "dotenv"
 import mongoose from "mongoose";
 import morgan from "morgan";
-import fs from 'fs';
 import cors from "cors";
 import routes from "./routes/routes.js";
 import passport from "passport";
@@ -23,7 +22,6 @@ app.use(
 
 app.use(routes);
 
-app.use(morgan("dev"));
 app.use(
     session({
       secret: "something",
@@ -34,7 +32,9 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(express.static("public"));
 localStrategy(passport);
+app.use(morgan("dev"));
 
 
 /*

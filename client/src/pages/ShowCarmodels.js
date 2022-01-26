@@ -33,7 +33,9 @@ function ActivityPanel() {
         <Typography>Name: {carmodel.brand}</Typography>
         <Typography>Model: {carmodel.model}</Typography>
         <Typography>Price: {carmodel.price}</Typography>
-        <Button onClick={deleteCar}>Delete</Button>
+        <Box>
+        <Button variant='contained' onClick={deleteCar}>Delete</Button>
+        </Box>
       </>
     ))}
     </Box>

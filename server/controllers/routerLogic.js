@@ -1,9 +1,21 @@
-//import Sales from '../models/sales.js';
 import Employees from '../models/employees.js';
-import Carmodel from '../models/carmodels.js';
 import Carmodels from '../models/carmodels.js';
 import Sales from '../models/sales.js';
+import passport from 'passport';
 
+
+export const loginUser = (req, res, next) => {
+  passport.authenticate("local", (err, user, info) => {
+    if (err) {return err, null};
+    if (!user) res.send("Ingen användare finns!");
+    else {
+      req.logIn(user, (err) => {
+        if (err) {return err, null};
+        res.send("auth");
+      });
+    }
+  })(req, res, next);
+};
 
 export const getEmployees = async (req, res) => {
   try {
@@ -15,15 +27,24 @@ export const getEmployees = async (req, res) => {
 } 
 
 export const getSession = (req, res) => {
-  res.json(req.user)
+  res.json(req.user);
+};
+
+//Förstör den pågående sessionen
+export const deleteSession = (req, res) => {
+  req.session.destroy(() => {
+    res.send("Logged out")
+  })
 }
 
 
 export const getOneEmployee = async (req, res) => {
   try {
-    const employee = await Employees.findOne({ name: req.params.name });
+    const employee = await Employees.findOne({ name: req.body.name });
     res.status(200).json(employee);
   } catch {
+    console.log("HEJ");
+    console.log("NGT GICK FEL");
     res.status(404).json({ message: error.message });
   }
 };
@@ -31,7 +52,7 @@ export const getOneEmployee = async (req, res) => {
 
 export const getCarmodels = async (req, res) => {
   try{
-    const carmodels = await Carmodel.find();
+    const carmodels = await Carmodels.find();
     res.status(200).json(carmodels);
   } catch (error) {
     res.status(404).json({ message: error.message})
@@ -82,8 +103,48 @@ export const deleteCarmodel = async (req, res) => {
 // FIXA SEDAN
 export const getTotalSales = async (req, res) => {
   try {
-    const sales = await Sales.find();
-    res.status(200).json(sales);
+    const salesAndEmployees = await Sales.aggregate([{
+      $lookup: {
+        from: "employees",
+        localField: "employee_id",
+        foreignField: "id",
+        as: "employee"
+      }
+    }
+  ])
+
+  const salesAndCarModels = await Sales.aggregate([{
+      $lookup: {
+        from: "carmodels",
+        localField: "carmodel_id",
+        foreignField: "id",
+        as: "car"
+      }
+  }])
+
+  const getEmployeesAndPrice = await Employees.aggregate([{
+    $lookup: {
+      from: "sales",
+      localField: "id",
+      foreignField: "employee_id",
+      as: "sales"
+    },
+    $lookup: {
+      from: "carmodels",
+      localField: "id",
+      foreignField: "id",
+      as: "car"
+    }
+  }])
+
+    
+
+  //res.status(200).json(getEmployeesAndPrice)
+  
+  res.status(200).json({
+    salesAndEmployees,
+    salesAndCarModels
+  });
 
   } catch (error) {
     res.status(404).json({ message: error.message})
