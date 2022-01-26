@@ -173,7 +173,6 @@ export const newUser = async (req, res) => {
     res.send("added");
   }catch(error){
     res.status(404).json({ message: error.message})
-    console.log("NGT GICK FEL");
   }
   
 }
@@ -183,11 +182,12 @@ export const postTest = async (req, res) => {
     Math.floor(Math.random() * 100)
   
   const randomID = createRandomId();
-  console.log(randomID);
+
   try {
     const newTest = new Employees({
       id: randomID,
       name: "TEST2",
+      status: Boolean
     });
     await newTest.save();
     console.log(" skapad");
