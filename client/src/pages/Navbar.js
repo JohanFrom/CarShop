@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -6,12 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import green from "@material-ui/core/colors/green";
 import { CssBaseline } from '@mui/material';
-import { logoutUser } from '../api';
-
-const UserLogout = () => {
-  logoutUser();
-  window.location = "/";
-}
+import { logoutUser, getOneEmployee, getSession } from '../api';
 
 const useStyles = makeStyles((theme) => ({
   menuButton: {
@@ -32,6 +27,27 @@ const useStyles = makeStyles((theme) => ({
 
 const Navbar = () => {
   const classes = useStyles();
+  const [employees, setEmployees] = useState("")
+  const [status, setStatus] = useState("")
+  const UserLogout = () => {
+    logoutUser();
+    window.location = "/";
+  }
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const fetchSession = await getSession();
+      const fetchUser = await getOneEmployee(
+        fetchSession.data.name
+      )
+      setEmployees(fetchSession.data);
+      setStatus(fetchUser.data);
+
+      console.log(status);
+    };
+    fetchData();
+  }, []);
+
   return (
     <React.Fragment>
       <CssBaseline />

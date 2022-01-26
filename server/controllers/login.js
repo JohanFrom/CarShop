@@ -13,10 +13,6 @@ export const loginUser = (req, res, next) => {
   })(req, res, next);
 };
 
-//Hämtar den pågående sessionen
-export const getSession = (req, res) => {
-  res.json(req.user)
-}
 
 //Förstör den pågående sessionen
 export const deleteSession = (req, res) => {

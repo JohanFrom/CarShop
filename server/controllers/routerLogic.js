@@ -14,6 +14,21 @@ export const getEmployees = async (req, res) => {
   }
 } 
 
+export const getSession = (req, res) => {
+  res.json(req.user)
+}
+
+
+export const getOneEmployee = async (req, res) => {
+  try {
+    const employee = await Employees.findOne({ name: req.params.name });
+    res.status(200).json(employee);
+  } catch {
+    res.status(404).json({ message: error.message });
+  }
+};
+
+
 export const getCarmodels = async (req, res) => {
   try{
     const carmodels = await Carmodel.find();
@@ -82,9 +97,11 @@ export const newUser = async (req, res) => {
   const randomID = createRandomId();
   try{
     const name = req.body.name
+    const status = req.body.status
     const userNew = new Employees({
       id: randomID,
-      name: name
+      name: name,
+      status: status
     })
     await userNew.save();
     res.send("added");

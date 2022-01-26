@@ -6,7 +6,9 @@ import {
     deleteCarmodel, 
     postCarmodel,
     postTest,
-    newUser
+    newUser,
+    getOneEmployee,
+    getSession
 } from "../controllers/routerLogic.js";
 
 import {
@@ -18,6 +20,8 @@ const router = express.Router();
 
 // Routes
 router.get("/employees", getEmployees);
+router.get("/getoneemployee", getOneEmployee)
+router.get("getsession", getSession)
 router.get("/carmodels", getCarmodels);
 router.post("/carmodels", postCarmodel);
 router.delete("/carmodels", deleteCarmodel);

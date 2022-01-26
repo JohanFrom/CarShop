@@ -4,6 +4,13 @@ const serverUrl = "http://localhost:8000";
 
 export const getEmployees = () => axios.get(`${serverUrl}/employees`);
 
+export const getOneEmployee = (name) =>
+  axios.get(`${serverUrl}/getoneemployee/${name}`);
+
+  export const getSession = () => {
+    return axios.get(`${serverUrl}/getsession`, { withCredentials: true });
+  }
+
 export const getCarmodels = () => axios.get(`${serverUrl}/carmodels`);
 
 export const postCarmodels = (params) => {

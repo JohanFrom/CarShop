@@ -18,16 +18,13 @@ function AddUser() {
   const theme = createTheme();
   
   const [newName, setNewName] = useState("");
-  const [dropValues, setDropValues] = useState("")
-
+  const [dropValues, setDropValues] = useState(true)
   
-  console.log(dropValues);
-
   const handleSubmit = () => {
     
     const postData = {
         name: newName,
-        //status: dropValues
+        status: dropValues
     }
 
     postNewUser(postData)
@@ -66,10 +63,10 @@ function AddUser() {
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 label="Worker"
-                onChange={(e) => setDropValues(e.selected.value)}
-            >
-                <MenuItem value={1}>Worker</MenuItem>
-                <MenuItem value={1}>Not Worker</MenuItem>
+                onChange={(e) => setDropValues(e.target.value)}
+                >
+                <MenuItem value={true}>Worker</MenuItem>
+                <MenuItem value={false}>Not Worker</MenuItem>
             </Select>
             </FormControl>
             <Box sx={{ marginTop: 20}}>

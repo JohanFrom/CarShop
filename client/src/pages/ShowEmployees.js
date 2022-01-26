@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getEmployees } from '../api';
+import { getEmployees} from '../api';
 import Navbar from './Navbar'
 import { Box,Typography } from '@material-ui/core';
 
@@ -16,7 +16,6 @@ function ShowEmpoyees() {
     };
     fetchData();
   }, [])
-
 
   return (
       <div className="App">
