@@ -18,16 +18,12 @@ function AddUser() {
   const theme = createTheme();
   
   const [newName, setNewName] = useState("");
-  const [newEmail, setNewEmail] = useState("");
-  const [newPassword, setNewPassword] = useState("");
   const [dropValues, setDropValues] = useState(true)
   
   const handleSubmit = () => {
     
     const postData = {
         name: newName,
-        email: newEmail,
-        password: newPassword,
         status: dropValues
     }
 
@@ -58,24 +54,15 @@ function AddUser() {
           </Typography>
           <Box sx={{
               margin: 20
-          }} component="form">
+            }} component="form">
+              <Typography>New name:</Typography>
             <TextField
               margin="normal"
               fullWidth
               type="text"
+              
               onChange={(e) => setNewName(e.target.value)}
-            />
-            <TextField
-              margin="normal"
-              fullWidth
-              type="text"
-              onChange={(e) => setNewEmail(e.target.value)}
-            />
-            <TextField
-              margin="normal"
-              fullWidth
-              type="text"
-              onChange={(e) => setNewPassword(e.target.value)}
+              required
             />
             <FormControl fullWidth >
             <InputLabel id="demo-simple-select-label">Status</InputLabel>

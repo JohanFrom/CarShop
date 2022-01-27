@@ -5,7 +5,7 @@ import passportLocal from 'passport-local';
 const LocalStrategy = passportLocal.Strategy;
 
 const initializeStrategy = (passport) => {
-    /*
+    
     passport.use(
       "userLogin",
       new LocalStrategy({usernameField: 'name', passwordField: 'name'},
@@ -16,30 +16,15 @@ const initializeStrategy = (passport) => {
           return done(null, user);
         });
       })
-    );*/
-    passport.use(
-      "userLogin",
-      new LocalStrategy({usernameField: 'email', passwordField: 'password'},
-        (name, password, done) => {
-        Employees.findOne({ email: name }, (err, user) => {
-          if (err) {return done(err)};
-          if (!user) {return done(null, false)};
-          if(password !== user.password){
-            return done(null, false);
-          }
-          return done(null, user);
-          
-        });
-      })
     );
+
     
   
-    //Skapar en session där cookiens ID är namnet på användaren
+    
     passport.serializeUser((user, done) => {
       done(null, user.id);
     });
   
-    //Hittar sessionens ID och avslutar sessionen
     passport.deserializeUser((id, done) => {
       Employees.findOne({ id: id }, (err, user) => {
         const employeeInfo = {

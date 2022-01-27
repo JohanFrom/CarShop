@@ -1,32 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
-import green from "@material-ui/core/colors/green";
 import { CssBaseline } from '@mui/material';
 import { logoutUser, getOneEmployee, getSession } from '../api';;
 
-const useStyles = makeStyles((theme) => ({
-  menuButton: {
-    marginRight: theme.spacing(-120)
-  },
-  title: {
-    flexGrow: 1
-  },
-  customColor: {
-    // or hex code, this is normal CSS background-color
-    backgroundColor: green[500]
-  },
-  customHeight: {
-    minHeight: 200
-  },
-  offset: theme.mixins.toolbar
-}));
 
-const Navbar = () => {
-  const classes = useStyles();
+const Navbar = () => {;
   const [employee, setEmployee] = useState("")
   const [status, setStatus] = useState("")
 
@@ -58,7 +39,7 @@ const Navbar = () => {
             >
             <Toolbar>
             
-            <Typography variant="h6" className={classes.title}>
+            <Typography variant="h4">
                 CarShop
             </Typography>
             <IconButton color="inherit" href="/employees">

@@ -6,7 +6,7 @@ import { Box } from '@material-ui/core';
 import { Button } from '@material-ui/core';
 import { deleteCarmodels } from '../api';
 
-function ActivityPanel() {
+function ShowCarmodels() {
   const [carmodels, setCarmodels] = useState([]);
 
   useEffect(() => {
@@ -26,21 +26,19 @@ function ActivityPanel() {
     <div className="App">
     <Navbar />
     <h1>All Cars</h1>
-    <Box sx={{display: 'flex', flexDirection: 'column' }}>
     {carmodels.map((carmodel) => (
       <>
+      <Box sx={{ padding: 10 }} >
         <Typography>Id: {carmodel.id}</Typography>
         <Typography>Name: {carmodel.brand}</Typography>
         <Typography>Model: {carmodel.model}</Typography>
         <Typography>Price: {carmodel.price}</Typography>
-        <Box>
         <Button variant='contained' onClick={deleteCar}>Delete</Button>
-        </Box>
+      </Box>
       </>
     ))}
-    </Box>
   </div>
   );
 }
 
-export default ActivityPanel;
+export default ShowCarmodels;

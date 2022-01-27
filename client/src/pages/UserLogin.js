@@ -14,13 +14,11 @@ import { Link } from "@material-ui/core";
 
 function UserLogin() {
 
-  const [loginEmail, setLoginEmail] = useState("");
-  const [loginPassword, setLoginPassword] = useState("");
+  const [name, setName] = useState("");
 
   const handleSubmit = () => {
     const postData = {
-      email: loginEmail,
-      password: loginPassword
+      name: name,
     };
 
     loginUser(postData);
@@ -56,15 +54,8 @@ function UserLogin() {
               margin="normal"
               fullWidth
               type="text"
-              label="Email..."
-              onChange={(e) => setLoginEmail(e.target.value)}
-            />
-            <TextField
-              margin="normal"
-              fullWidth
-              type="text"
-              label="Password..."
-              onChange={(e) => setLoginPassword(e.target.value)}
+              label="Name..."
+              onChange={(e) => setName(e.target.value)}
             />
             <Button
               fullWidth
