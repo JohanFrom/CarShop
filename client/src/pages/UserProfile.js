@@ -15,7 +15,7 @@ function UserProfile() {
       const fetchedEmployee = await getOneEmployee(fecthedSession.data.name)
       const fetchedSales = await getSales();
       setSales(fetchedSales.data)
-      setOneEmployee(fetchedEmployee.data.name)
+      setOneEmployee(fetchedEmployee.data)
       setUserid(fetchedEmployee.data.id)
     };
     fetchData();
@@ -39,7 +39,9 @@ function UserProfile() {
     <h1>User Profile</h1>
     <Box sx={{display: 'flex', flexDirection: 'column' }}>
     <p>Id: {userId}</p>
-    <p>Name: {oneEmployee}</p>
+    <p>Name: {oneEmployee.name}</p>
+    <p>Email: {oneEmployee.email}</p>
+    <p>Password: {oneEmployee.password}</p>
     <p>Sales amount: {counter}</p>
     </Box>
   </div>

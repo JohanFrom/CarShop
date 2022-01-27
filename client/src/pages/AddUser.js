@@ -18,16 +18,24 @@ function AddUser() {
   const theme = createTheme();
   
   const [newName, setNewName] = useState("");
+  const [newEmail, setNewEmail] = useState("");
+  const [newPassword, setNewPassword] = useState("");
   const [dropValues, setDropValues] = useState(true)
   
   const handleSubmit = () => {
     
     const postData = {
         name: newName,
+        email: newEmail,
+        password: newPassword,
         status: dropValues
     }
 
     postNewUser(postData)
+  }
+
+  const handleBack = () => {
+    window.location = "/"
   }
 
   return (
@@ -57,6 +65,18 @@ function AddUser() {
               type="text"
               onChange={(e) => setNewName(e.target.value)}
             />
+            <TextField
+              margin="normal"
+              fullWidth
+              type="text"
+              onChange={(e) => setNewEmail(e.target.value)}
+            />
+            <TextField
+              margin="normal"
+              fullWidth
+              type="text"
+              onChange={(e) => setNewPassword(e.target.value)}
+            />
             <FormControl fullWidth >
             <InputLabel id="demo-simple-select-label">Status</InputLabel>
             <Select
@@ -70,13 +90,22 @@ function AddUser() {
             </Select>
             </FormControl>
             <Box sx={{ marginTop: 20}}>
-                <Button 
+                <Button
                 fullWidth
                 variant="contained"
                 onClick={handleSubmit}
                 >
                 Create profile
                 </Button>
+                <Box sx={{ marginTop: 10 }}>
+                <Button
+                fullWidth
+                variant="contained"
+                onClick={handleBack}
+                >
+                Back
+              </Button>
+              </Box>
             </Box>
           </Box>
         </Box>

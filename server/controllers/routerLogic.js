@@ -81,10 +81,6 @@ export const postCarmodel = async (req, res) => {
   } catch (error) {
     res.status(404).json({ message: error.message})
   }
-  //brand: req.params.brand
-  //model: req.params.model
-  //price: req.params.price
-  
 };
 
 export const deleteCarmodel = async (req, res) => {
@@ -134,10 +130,14 @@ export const newUser = async (req, res) => {
   const randomID = createRandomId();
   try{
     const name = req.body.name
+    const email = req.body.email
+    const password = req.body.password
     const status = req.body.status
     const userNew = new Employees({
       id: randomID,
       name: name,
+      email: email,
+      password: password,
       status: status
     })
     await userNew.save();

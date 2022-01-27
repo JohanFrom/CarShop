@@ -14,13 +14,13 @@ import { Link } from "@material-ui/core";
 
 function UserLogin() {
 
-  const [loginName, setLoginName] = useState("");
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
 
   const handleSubmit = () => {
-    console.log(`försöker logga in med ${loginName}`);
-
     const postData = {
-      name: loginName,
+      email: loginEmail,
+      password: loginPassword
     };
 
     loginUser(postData);
@@ -56,8 +56,15 @@ function UserLogin() {
               margin="normal"
               fullWidth
               type="text"
-              label="Name..."
-              onChange={(e) => setLoginName(e.target.value)}
+              label="Email..."
+              onChange={(e) => setLoginEmail(e.target.value)}
+            />
+            <TextField
+              margin="normal"
+              fullWidth
+              type="text"
+              label="Password..."
+              onChange={(e) => setLoginPassword(e.target.value)}
             />
             <Button
               fullWidth
@@ -67,6 +74,7 @@ function UserLogin() {
               >
               Sign In
             </Button>
+            
             <Grid item>
                 <Link href="/adduser" variant="body2">
                   {"Don't have an account? Sign Up"}

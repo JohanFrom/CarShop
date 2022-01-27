@@ -18,12 +18,12 @@ function ShowEmpoyees() {
   }, [])
 
   let employeeAndPriceList = []
-  
+  let sum = 0;
   sales.forEach((sale) => {
     let emptyObject = {}
     let salesArray = sale.sales;
     let employeeId = sale.id;
-    let sum = 0;
+    
     for (let i = 0; i < salesArray.length; i++) {
       console.log(employeeId);
       let employeeName = sale.name
@@ -31,6 +31,7 @@ function ShowEmpoyees() {
       const sales_employee_id = salesData.employee_id;
       let sales_carmodel_id = salesData.carmodel_id;
       
+      // eslint-disable-next-line no-loop-func
       carmodels.forEach((carmodel) => {
         
         let carmodelId = carmodel.id;
