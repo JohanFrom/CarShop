@@ -32,10 +32,8 @@ function ShowEmpoyees() {
       
       // eslint-disable-next-line no-loop-func
       carmodels.forEach((carmodel) => {
-        
         let carmodelId = carmodel.id;
         let price = carmodel.price;
-        
         if(sales_employee_id === employeeId && sales_carmodel_id === carmodelId){ 
           if(employeeAndPriceList.length < employeeId){
             sum += price
@@ -43,12 +41,7 @@ function ShowEmpoyees() {
             emptyObject.name = employeeName;
             emptyObject.price = sum;  
             employeeAndPriceList.push(emptyObject)
-          }
-          else{
-            sum += price;
-            emptyObject.price = sum;  
-          }
-         
+          } 
         }
       })
       

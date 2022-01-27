@@ -40,6 +40,7 @@ function UserProfile() {
     carmodels.forEach((car) => {
       let carmodelId = car.id;
       if(sale_employee_id === userId && sale.carmodel_id === carmodelId){
+        console.log(car);
         salesList.push(car)
       }
     })
