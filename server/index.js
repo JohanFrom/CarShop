@@ -48,7 +48,6 @@ const databaseConnection = async () => {
                 `Server is running, connected to database on port: ${PORT}`
             );
             main();
-            //JsonToMongoDB();
         });
     } catch (error){
         console.log(error.message);
