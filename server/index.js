@@ -6,6 +6,7 @@ import cors from "cors";
 import routes from "./routes/routes.js";
 import passport from "passport";
 import session from "express-session";
+import fs from 'fs'
 import localStrategy from "./controllers/passportConfig.js"
 
 dotenv.config();
@@ -35,21 +36,6 @@ localStrategy(passport);
 app.use(routes);
 app.use(morgan("dev"));
 
-
-/*
-const JsonToMongoDB = () => {
-    let carShopData = fs.readFileSync('data.json');
-    let data = JSON.parse(carShopData);
-    try{
-        db = CONNECTION_URI;
-        const CarShop = mongoose.Collection("CarShop")
-        CarShop.insertMany(data);
-        console.log(cities);
-    }catch(error){
-        console.log(error.message);
-    }
-}*/
-
 const CONNECTION_URI = process.env.CONNECTION_DB_URI;
 const databaseConnection = async () => {
     try{
@@ -61,6 +47,7 @@ const databaseConnection = async () => {
             console.log(
                 `Server is running, connected to database on port: ${PORT}`
             );
+            main();
             //JsonToMongoDB();
         });
     } catch (error){
@@ -69,6 +56,5 @@ const databaseConnection = async () => {
 }
 
 databaseConnection();
-
 
 export default app;
