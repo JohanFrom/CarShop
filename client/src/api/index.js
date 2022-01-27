@@ -64,6 +64,8 @@ export const deleteCarmodels = async (params) => {
 
 export const getTotalSales = () => axios.get(`${serverUrl}/total_sales`);
 
+export const getSales = () => axios.get(`${serverUrl}/getsales`);
+
 export const postNewUser = (params) => {
   axios({
       method: "POST",

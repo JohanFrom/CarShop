@@ -10,7 +10,8 @@ import {
     getOneEmployee,
     getSession,
     loginUser,
-    deleteSession
+    deleteSession,
+    getProfileData
 } from "../controllers/routerLogic.js";
 
 const router = express.Router();
@@ -20,6 +21,7 @@ router.get("/employees", getEmployees);
 router.get("/getsession", getSession);
 router.get("/getoneemployee/:name", getOneEmployee)
 router.get("/total_sales", getTotalSales);
+router.get("/getprofiledata", getProfileData)
 router.get("/carmodels", getCarmodels);
 router.post("/carmodels", postCarmodel);
 router.delete("/carmodels", deleteCarmodel);
