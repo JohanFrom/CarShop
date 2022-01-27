@@ -4,7 +4,7 @@
 2. Open Git Bash on that folder
 3. Type in: 
 ```
-$ git clone https://https://github.com/JohanFrom/BitcoinCharter 
+$ git clone https://github.com/JohanFrom/CarShop 
 ```
 4. This repository is now cloned to your project folder you choosed
 5. Use live server on vscode or another option of your choice to use the application
