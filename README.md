@@ -2,7 +2,7 @@
 
 ## Installing 
 ```
-$ git clone https://https://github.com/JohanFrom/CarShop
+$ git clone https://github.com/JohanFrom/CarShop
 $ npm ci
 ```
 
