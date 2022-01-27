@@ -1,11 +1,4 @@
 # CarShop
-
-## Installing 
-```
-$ git clone https://github.com/JohanFrom/CarShop
-$ npm ci
-```
-
 ### Using Git 
 1. Create a folder on your computer (name the folder something of your choice or BitcoinCharter)
 2. Open Git Bash on that folder
