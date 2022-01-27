@@ -15,7 +15,7 @@ $ npm start
 ##Excecuting Program - Client
 ```
 $ cd client
-npm install 
+$ npm install 
 $ npm start
 ```
 
