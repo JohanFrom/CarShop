@@ -25,7 +25,6 @@ function ShowEmpoyees() {
     let employeeId = sale.id;
     
     for (let i = 0; i < salesArray.length; i++) {
-      console.log(employeeId);
       let employeeName = sale.name
       const salesData = salesArray[i];
       const sales_employee_id = salesData.employee_id;
@@ -37,8 +36,8 @@ function ShowEmpoyees() {
         let carmodelId = carmodel.id;
         let price = carmodel.price;
         
-        if(sales_employee_id === employeeId && sales_carmodel_id === carmodelId){   
-          if(employeeAndPriceList.length === 0){
+        if(sales_employee_id === employeeId && sales_carmodel_id === carmodelId){ 
+          if(employeeAndPriceList.length < employeeId){
             sum += price
             emptyObject.id = sales_employee_id;
             emptyObject.name = employeeName;

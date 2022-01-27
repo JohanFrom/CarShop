@@ -17,9 +17,6 @@ const initializeStrategy = (passport) => {
         });
       })
     );
-
-    
-  
     
     passport.serializeUser((user, done) => {
       done(null, user.id);

@@ -15,7 +15,9 @@ export const loginUser = (params) => {
       window.location = "/employees"
     }
     else{
-      console.log("Användare finns ej");
+      const error = document.getElementById("loginError");
+      error.innerHTML =
+        "<span style='color:#C22D39;'> Användare finns ej </span>";
     }
   });
 };

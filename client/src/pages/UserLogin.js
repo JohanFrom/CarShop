@@ -38,8 +38,6 @@ function UserLogin() {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            border: "1px solid black",
-            borderRadius: 8,
             paddingBottom: 20
           }}
         >
@@ -50,6 +48,7 @@ function UserLogin() {
             Sign in
           </Typography>
           <Box component="form">
+            <span id="loginError"></span>
             <TextField
               margin="normal"
               fullWidth

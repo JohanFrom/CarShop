@@ -6,7 +6,6 @@ import cors from "cors";
 import routes from "./routes/routes.js";
 import passport from "passport";
 import session from "express-session";
-import fs from 'fs'
 import localStrategy from "./controllers/passportConfig.js"
 
 dotenv.config();
@@ -47,7 +46,6 @@ const databaseConnection = async () => {
             console.log(
                 `Server is running, connected to database on port: ${PORT}`
             );
-            main();
         });
     } catch (error){
         console.log(error.message);

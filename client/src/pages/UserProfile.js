@@ -27,15 +27,16 @@ function UserProfile() {
   
   let counter = 0;
   let salesList = [];
+  let sum = 1
   sales.forEach((sale) => {
     let sale_employee_id = sale.employee_id;
     if(sale_employee_id === userId){
-      counter++
+      sum += counter++
     }
     else{
-      counter = 0;
+      sum -= 0
     }
-
+    
     carmodels.forEach((car) => {
       let carmodelId = car.id;
       if(sale_employee_id === userId && sale.carmodel_id === carmodelId){
@@ -53,7 +54,7 @@ function UserProfile() {
     <Box sx={{display: 'flex', flexDirection: 'column', fontSize: 20 }}>
     <p>Id: {userId}</p>
     <p>Name: {oneEmployee}</p>
-    <p>Sales amount: {counter}</p>
+    <p>Sales amount: {sum}</p>
     <h2>List of sales</h2>
     {salesList.map((sale) => (
         <>

@@ -22,7 +22,6 @@ const Navbar = () => {;
     fetchData();
   }, [])
   
-
   const UserLogout = () => {
     const answer = window.confirm("Log out?")
     if(answer){
