@@ -99,7 +99,7 @@ export const deleteCarmodel = async (req, res) => {
   })
 }
 
-export const getProfileData = async (req, res) => {
+export const getSales = async (req, res) => {
   try {
     const getSales = await Sales.find();
     res.status(200).json(getSales)

@@ -12,7 +12,7 @@ function UserProfile() {
   useEffect(() => {
     const fetchData = async () => {
       const fecthedSession = await getSession();
-      const fetchedEmployee = await getOneEmployee(fecthedSession.data)
+      const fetchedEmployee = await getOneEmployee(fecthedSession.data.name)
       const fetchedSales = await getSales();
       setSales(fetchedSales.data)
       setOneEmployee(fetchedEmployee.data.name)
@@ -20,10 +20,7 @@ function UserProfile() {
     };
     fetchData();
   }, [])
-
-  console.log(sales);
-  console.log(userId);
-
+  
   let counter = 0;
   sales.forEach((sale) => {
     let sale_employee_id = sale.employee_id;
