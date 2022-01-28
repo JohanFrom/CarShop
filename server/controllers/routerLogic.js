@@ -84,7 +84,7 @@ export const postCarmodel = async (req, res) => {
 
 export const deleteCarmodel = async (req, res) => {
   const name = req.body.name;
-  await Carmodels.deleteOne({ name: name }).then((carmodel) => {
+  await Carmodels.deleteOne({ brand: name }).then((carmodel) => {
     if(!carmodel){
       res.status(404).send({
         message: "Carmodel not found with id: " + name,
